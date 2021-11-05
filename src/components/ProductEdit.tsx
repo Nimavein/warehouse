@@ -1,6 +1,6 @@
 import React from "react";
 
-const ProductEdit = () => {
+const ProductEdit: React.FC = () => {
   return <div></div>;
 };
 

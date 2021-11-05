@@ -1,7 +1,7 @@
 import React from "react";
 
-const CategoriesList = () => {
-  return <div></div>;
+const CategoriesList: React.FC = () => {
+  return <div>Categories</div>;
 };
 
 export default CategoriesList;

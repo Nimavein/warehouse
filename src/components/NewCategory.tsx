@@ -1,6 +1,6 @@
 import React from "react";
 
-const NewCategory = () => {
+const NewCategory: React.FC = () => {
   return <div></div>;
 };
 

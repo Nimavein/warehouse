@@ -2,6 +2,12 @@ import { useQuery } from "react-query";
 import { AxiosRequestConfig } from "axios";
 import { Spinner } from "react-bootstrap";
 import { ProductType } from "./types";
+import ProductsList from "./components/ProductsList";
+import CategoriesList from "./components/CategoriesList";
+import ProductEdit from "./components/ProductEdit";
+import CategoryEdit from "./components/CategoryEdit";
+import Navbar from "./components/Navbar";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 const config: AxiosRequestConfig = {
   headers: {
@@ -14,7 +20,7 @@ const getProducts = async (): Promise<ProductType[]> =>
     await fetch("https://newdemostock.gopos.pl/ajax/219/products", config)
   ).json();
 
-function App() {
+const App: React.FC = () => {
   const { data, isLoading, error } = useQuery<ProductType[]>(
     "products",
     getProducts
@@ -23,7 +29,28 @@ function App() {
   if (error) return <h1>Something went wrong...</h1>;
   if (isLoading) return <Spinner animation="border" />;
 
-  return <></>;
-}
+  return (
+    <>
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<ProductsList />} />
+          <Route path="/productId" element={<ProductEdit />} />
+          <Route path="/categories" element={<CategoriesList />} />
+          <Route path=":categoryId" element={<CategoryEdit />} />
+          <Route path="/add" element={<CategoriesList />} />
+          <Route
+            path="*"
+            element={
+              <main style={{ padding: "1rem" }}>
+                <p>There's nothing here!</p>
+              </main>
+            }
+          />
+        </Routes>
+      </BrowserRouter>
+    </>
+  );
+};
 
 export default App;

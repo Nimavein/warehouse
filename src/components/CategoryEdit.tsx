@@ -1,6 +1,6 @@
 import React from "react";
 
-const CategoryEdit = () => {
+const CategoryEdit: React.FC = () => {
   return <div></div>;
 };
 

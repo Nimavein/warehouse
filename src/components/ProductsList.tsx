@@ -24,6 +24,7 @@ const ProductsList: React.FC = () => {
             <Product
               key={product.id}
               name={product.name}
+              id={product.id}
               categoryName={getProductCategory(product)[0].name}
             />
           );

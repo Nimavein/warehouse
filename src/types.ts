@@ -41,5 +41,14 @@ export type CategoryType = {
 
 export type ProductProps = {
   name: string;
+  id: number;
   categoryName: string;
+};
+
+export type LocationType = {
+  hash: string;
+  key: string;
+  pathname: string;
+  search: string;
+  state: any;
 };

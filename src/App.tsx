@@ -1,32 +1,36 @@
-import ProductsList from "./components/ProductsList";
-import CategoriesList from "./components/CategoriesList";
-import ProductEdit from "./components/ProductEdit";
-import CategoryEdit from "./components/CategoryEdit";
-import Navbar from "./components/Navbar";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import React from "react";
+import NavbarComponent from "./components/Navbar";
+import {
+  BrowserRouter,
+  Route,
+  Switch,
+  RouteComponentProps,
+} from "react-router-dom";
+import routes from "./routes";
 
 const App: React.FC = () => {
   return (
-    <>
-      <BrowserRouter>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<ProductsList />} />
-          <Route path="/productId" element={<ProductEdit />} />
-          <Route path="/categories" element={<CategoriesList />} />
-          <Route path=":categoryId" element={<CategoryEdit />} />
-          <Route path="/add" element={<CategoriesList />} />
-          <Route
-            path="*"
-            element={
-              <main style={{ padding: "1rem" }}>
-                <p>There's nothing here!</p>
-              </main>
-            }
-          />
-        </Routes>
-      </BrowserRouter>
-    </>
+    <BrowserRouter>
+      <NavbarComponent />
+      <Switch>
+        {routes.map((route, index) => {
+          return (
+            <Route
+              key={index}
+              path={route.path}
+              exact={route.exact}
+              render={(props: RouteComponentProps<any>) => (
+                <route.component
+                  name={route.name}
+                  {...props}
+                  {...route.props}
+                />
+              )}
+            />
+          );
+        })}
+      </Switch>
+    </BrowserRouter>
   );
 };
 

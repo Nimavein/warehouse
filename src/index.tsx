@@ -4,6 +4,7 @@ import App from "./App";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { CategoriesProvider } from "./contextProviders/categoriesContext";
 import { ProductsProvider } from "./contextProviders/productsContext";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const queryClient = new QueryClient();
 

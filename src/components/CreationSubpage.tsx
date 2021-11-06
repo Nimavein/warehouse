@@ -5,6 +5,7 @@ import NewProduct from "./NewProduct";
 const CreationSubpage: React.FC = () => {
   return (
     <>
+      XX
       <NewCategory />
       <NewProduct />
     </>

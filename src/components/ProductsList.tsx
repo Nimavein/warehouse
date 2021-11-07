@@ -1,3 +1,4 @@
+import { Container } from "react-bootstrap";
 import { useCategoriesData } from "../contextProviders/categoriesContext";
 import { useProductsData } from "../contextProviders/productsContext";
 import { CategoryType, ProductType } from "../types";
@@ -16,20 +17,19 @@ const ProductsList: React.FC = () => {
   };
 
   return (
-    <>
+    <Container>
       <h1>Products</h1>
       {products &&
         products.map((product: ProductType) => {
           return (
             <Product
               key={product.id}
-              name={product.name}
-              id={product.id}
               categoryName={getProductCategory(product)[0].name}
+              {...product}
             />
           );
         })}
-    </>
+    </Container>
   );
 };
 

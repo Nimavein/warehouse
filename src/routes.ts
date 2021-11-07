@@ -25,15 +25,15 @@ const routes: IRoute[] = [
     exact: true,
   },
   {
-    path: "/:productId",
-    name: "Product",
-    component: ProductEdit,
-    exact: true,
-  },
-  {
     path: "/categories/:categoryId",
     name: "Category",
     component: CategoryEdit,
+    exact: true,
+  },
+  {
+    path: "/:productId",
+    name: "Product",
+    component: ProductEdit,
     exact: true,
   },
 ];

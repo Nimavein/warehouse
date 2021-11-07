@@ -1,17 +1,17 @@
 import React from "react";
-import { ProductProps } from "../types";
+import { CategoryProps } from "../types";
 import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-const Product: React.FC<ProductProps> = (props) => {
+const Category: React.FC<CategoryProps> = (props) => {
   return (
     <Card className="mb-3">
       <Card.Body>
         <Card.Title>{props.name}</Card.Title>
-        <Card.Text>{props.categoryName}</Card.Text>
+        <Card.Text>{props.id}</Card.Text>
         <Link
           to={{
-            pathname: `/${props.id}`,
+            pathname: `/categories/${props.id}`,
             state: {
               ...props,
             },
@@ -24,4 +24,4 @@ const Product: React.FC<ProductProps> = (props) => {
   );
 };
 
-export default Product;
+export default Category;

@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { CategoriesProvider } from "./contextProviders/categoriesContext";
 import { ProductsProvider } from "./contextProviders/productsContext";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { SearchSelectProvider } from "./contextProviders/searchSelectContext";
 
 const queryClient = new QueryClient();
 
@@ -13,7 +14,9 @@ ReactDOM.render(
     <QueryClientProvider client={queryClient}>
       <CategoriesProvider>
         <ProductsProvider>
-          <App />
+          <SearchSelectProvider>
+            <App />
+          </SearchSelectProvider>
         </ProductsProvider>
       </CategoriesProvider>
     </QueryClientProvider>

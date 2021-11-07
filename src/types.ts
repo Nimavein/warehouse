@@ -45,10 +45,26 @@ export type ProductProps = {
   categoryName: string;
 };
 
+export type CategoryProps = {
+  name: string;
+  id: number;
+};
+
 export type LocationType = {
   hash: string;
   key: string;
   pathname: string;
   search: string;
   state: any;
+};
+
+export type EditProductFormType = {
+  newProductName: string;
+  newProductCategory: string;
+};
+
+export type CategorySearchSelectType = {
+  id: number;
+  label: string;
+  value: string;
 };

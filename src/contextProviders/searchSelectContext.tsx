@@ -9,7 +9,10 @@ const SearchSelectContext = React.createContext({});
 export const SearchSelectProvider: React.FC = ({ children }) => {
   const { data, isLoading, error } = useQuery<CategorySearchSelectType[] | any>(
     "searchCategories",
-    getSearchSelect
+    getSearchSelect,
+    {
+      refetchInterval: 300,
+    }
   );
 
   if (error) return <h1>Something went wrong...</h1>;

@@ -7,8 +7,6 @@ import Product from "./Product";
 const ProductsList: React.FC = () => {
   const categories: Promise<CategoryType[]> | any = useCategoriesData();
   const products: Promise<ProductType[]> | any = useProductsData();
-  console.log(products);
-  console.log(categories);
 
   const getProductCategory = (product: ProductType) => {
     return categories.filter((category: CategoryType) => {
@@ -24,7 +22,7 @@ const ProductsList: React.FC = () => {
           return (
             <Product
               key={product.id}
-              categoryName={getProductCategory(product)[0].name}
+              categoryName={getProductCategory(product)[0].name || "category"}
               {...product}
             />
           );

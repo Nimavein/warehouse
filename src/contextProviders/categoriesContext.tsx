@@ -9,7 +9,10 @@ const CategoriesContext = React.createContext({});
 export const CategoriesProvider: React.FC = ({ children }) => {
   const { data, isLoading, error } = useQuery<CategoryType[] | any, Error>(
     "categories",
-    getCategories
+    getCategories,
+    {
+      refetchInterval: 300,
+    }
   );
 
   if (error) return <h1>Something went wrong...</h1>;

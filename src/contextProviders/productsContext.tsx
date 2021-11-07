@@ -9,7 +9,10 @@ const ProductsContext = React.createContext({});
 export const ProductsProvider: React.FC = ({ children }) => {
   const { data, isLoading, error } = useQuery<ProductType[] | any>(
     "products",
-    getProducts
+    getProducts,
+    {
+      refetchInterval: 300,
+    }
   );
 
   if (error) return <h1>Something went wrong...</h1>;

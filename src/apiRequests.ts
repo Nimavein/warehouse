@@ -9,12 +9,12 @@ export const config: AxiosRequestConfig = {
 };
 
 export const getProducts = async (): Promise<ProductType[]> =>
-  await await axios
+  await axios
     .get("https://newdemostock.gopos.pl/ajax/219/products", config)
     .then((response) => response.data.data);
 
 export const getCategories = async (): Promise<CategoryType[]> =>
-  await await axios
+  await axios
     .get("https://newdemostock.gopos.pl/ajax/219/product_categories", config)
     .then((response) => response.data.data);
 

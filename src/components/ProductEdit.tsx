@@ -15,26 +15,22 @@ const ProductEdit: React.FC = (props: any) => {
   const categoriesSearchSelect: Promise<CategorySearchSelectType[]> | any =
     useSearchSelectData();
   const history = useHistory();
-
-  const editProduct = async ({ id, ...data }: any) => {
-    const response = await axios.put(
-      `https://newdemostock.gopos.pl/ajax/219/products/${id}`,
-      data,
-      config
-    );
-
-    return response;
-  };
+  console.log(props.location.state);
 
   const { mutate } = useMutation(async (editedProduct: any) => {
     const response = await axios.put(
       `https://newdemostock.gopos.pl/ajax/219/products/${id}`,
       {
         name: editedProduct.productName,
+        type: props.location.state.type,
+        measure_type: props.location.state.measure_type,
+        category_id: editedProduct.categoryId,
+        tax_id: props.location.state.tax_id,
       },
       config
     );
     if (response.status === 200) reset();
+    console.log(editedProduct.productName);
   });
 
   const onFormSubmit = (data: any) => {

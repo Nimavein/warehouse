@@ -22,7 +22,7 @@ const ProductsList: React.FC = () => {
           return (
             <Product
               key={product.id}
-              categoryName={getProductCategory(product)[0].name || "category"}
+              categoryName={getProductCategory(product)[0].name}
               {...product}
             />
           );

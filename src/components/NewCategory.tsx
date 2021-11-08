@@ -24,7 +24,6 @@ const NewCategory: React.FC = () => {
       config
     );
     if (response.status === 200) reset();
-    console.log(newCategory.name);
   });
 
   const onFormSubmit = (data: any) => {
@@ -34,7 +33,6 @@ const NewCategory: React.FC = () => {
 
   return (
     <Form className="mt-5" onSubmit={handleSubmit(onFormSubmit)}>
-      <Form.Label>Add Category</Form.Label>
       <Form.Group className="mb-3" controlId="categoryName">
         <Form.Label>Category Name</Form.Label>
         <Form.Control

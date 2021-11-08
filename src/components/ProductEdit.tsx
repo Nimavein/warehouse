@@ -15,7 +15,6 @@ const ProductEdit: React.FC = (props: any) => {
   const categoriesSearchSelect: Promise<CategorySearchSelectType[]> | any =
     useSearchSelectData();
   const history = useHistory();
-  console.log(props.location.state);
 
   const { mutate } = useMutation(async (editedProduct: any) => {
     const response = await axios.put(
@@ -30,7 +29,6 @@ const ProductEdit: React.FC = (props: any) => {
       config
     );
     if (response.status === 200) reset();
-    console.log(editedProduct.productName);
   });
 
   const onFormSubmit = (data: any) => {

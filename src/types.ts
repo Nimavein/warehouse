@@ -68,3 +68,17 @@ export type CategorySearchSelectType = {
   label: string;
   value: string;
 };
+
+export type TaxType = {
+  id: number;
+  name: string;
+  code: string;
+  amount: number;
+  updated_at: string;
+  status: string;
+};
+
+export type measureTypeType = {
+  id: number;
+  name: string;
+};

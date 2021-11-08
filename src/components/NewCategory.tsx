@@ -8,22 +8,20 @@ import axios from "axios";
 
 const NewCategory: React.FC = () => {
   const history = useHistory();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm();
+  const { register, handleSubmit } = useForm();
 
   const { mutate } = useMutation(async (newCategory: any) => {
-    const response = await axios.post(
-      "https://newdemostock.gopos.pl/ajax/219/product_categories",
-      {
-        name: newCategory.name,
-      },
-      config
-    );
-    if (response.status === 200) reset();
+    await axios
+      .post(
+        "https://newdemostock.gopos.pl/ajax/219/product_categories",
+        {
+          name: newCategory.name,
+        },
+        config
+      )
+      .catch(function (error) {
+        alert(`Could not add new category: ${error.message}`);
+      });
   });
 
   const onFormSubmit = (data: any) => {

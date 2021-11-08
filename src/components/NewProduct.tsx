@@ -18,12 +18,7 @@ const NewProduct: React.FC = () => {
   const categoriesSearchSelect: Promise<CategorySearchSelectType[]> | any =
     useSearchSelectData();
   const history = useHistory();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm();
+  const { register, handleSubmit } = useForm();
 
   useEffect(() => {
     const getData = async () => {
@@ -34,18 +29,21 @@ const NewProduct: React.FC = () => {
   }, []);
 
   const { mutate } = useMutation(async (newProduct: NewProductType) => {
-    const response = await axios.post(
-      "https://newdemostock.gopos.pl/ajax/219/products",
-      {
-        name: newProduct.newProductName,
-        category_id: newProduct.newProductCategory,
-        measure_type: newProduct.newProductMeasureType,
-        tax_id: newProduct.newProductTax,
-        type: "BASIC",
-      },
-      config
-    );
-    if (response.status === 200) reset();
+    await axios
+      .post(
+        "https://newdemostock.gopos.pl/ajax/219/products",
+        {
+          name: newProduct.newProductName,
+          category_id: newProduct.newProductCategory,
+          measure_type: newProduct.newProductMeasureType,
+          tax_id: newProduct.newProductTax,
+          type: "BASIC",
+        },
+        config
+      )
+      .catch(function (error) {
+        alert(`Could not add new product: ${error.message}`);
+      });
   });
 
   const measureTypes: MeasureTypeType[] = [

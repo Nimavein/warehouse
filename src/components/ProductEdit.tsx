@@ -19,18 +19,21 @@ const ProductEdit: React.FC<EditedProductType> = (props: any) => {
   const history = useHistory();
 
   const { mutate } = useMutation(async (editedProduct: EditedProductType) => {
-    const response = await axios.put(
-      `https://newdemostock.gopos.pl/ajax/219/products/${id}`,
-      {
-        name: editedProduct.productName,
-        type: props.location.state.type,
-        measure_type: props.location.state.measure_type,
-        category_id: editedProduct.categoryId,
-        tax_id: props.location.state.tax_id,
-      },
-      config
-    );
-    if (response.status === 200) reset();
+    await axios
+      .put(
+        `https://newdemostock.gopos.pl/ajax/219/products/${id}`,
+        {
+          name: editedProduct.productName,
+          type: props.location.state.type,
+          measure_type: props.location.state.measure_type,
+          category_id: editedProduct.categoryId,
+          tax_id: props.location.state.tax_id,
+        },
+        config
+      )
+      .catch(function (error) {
+        alert(`Could not edit category: ${error.message}`);
+      });
   });
 
   const onFormSubmit = (data: EditedProductType) => {
@@ -38,7 +41,7 @@ const ProductEdit: React.FC<EditedProductType> = (props: any) => {
     history.push("/");
   };
 
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit } = useForm();
 
   const location: LocationType = useLocation();
   const { name, categoryName, id } = location.state;
@@ -55,8 +58,8 @@ const ProductEdit: React.FC<EditedProductType> = (props: any) => {
                 type="text"
                 placeholder="Product Name"
                 defaultValue={name}
-                {...(register("productName"),
-                { required: true, minLength: 2, maxLength: 60 })}
+                {...register("productName")}
+                required
                 name="productName"
               />
             </Form.Group>
@@ -65,8 +68,10 @@ const ProductEdit: React.FC<EditedProductType> = (props: any) => {
               <Form.Select
                 className="mb-3"
                 aria-label="Category Select"
-                {...(register("categoryId"), { required: true })}
+                {...register("categoryId")}
+                required
               >
+                <option value="">Select category</option>
                 {categoriesSearchSelect.map(
                   (category: CategorySearchSelectType) => {
                     return (

@@ -8,13 +8,28 @@ const NavbarComponent: React.FC = () => {
       <Container>
         <Nav className="me-auto">
           <Nav.Link>
-            <Link to="/">Products</Link>
+            <Link
+              style={{ textDecoration: "none", color: "rgba(0, 0, 0, 0.55)" }}
+              to="/"
+            >
+              Products
+            </Link>
           </Nav.Link>
           <Nav.Link>
-            <Link to="/categories">Categories</Link>
+            <Link
+              style={{ textDecoration: "none", color: "rgba(0, 0, 0, 0.55)" }}
+              to="/categories"
+            >
+              Categories
+            </Link>
           </Nav.Link>
           <Nav.Link>
-            <Link to="/add">Add</Link>
+            <Link
+              style={{ textDecoration: "none", color: "rgba(0, 0, 0, 0.55)" }}
+              to="/add"
+            >
+              Add
+            </Link>
           </Nav.Link>
         </Nav>
       </Container>

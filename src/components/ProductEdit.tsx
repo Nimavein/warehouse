@@ -5,7 +5,7 @@ import {
   EditedProductType,
   LocationType,
 } from "../types";
-import { Form, Button, Container } from "react-bootstrap";
+import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import { useMutation } from "react-query";
 import { useForm } from "react-hook-form";
 import axios from "axios";
@@ -45,50 +45,52 @@ const ProductEdit: React.FC<EditedProductType> = (props: any) => {
 
   return (
     <Container>
-      {id}
-      {name}
-      {categoryName}
+      <h3 className="mb-3 mt-4">Edit {name} product</h3>
+      <Row>
+        <Col lg={6}>
+          <Form onSubmit={handleSubmit(onFormSubmit)}>
+            <Form.Group className="mb-3" controlId="productName">
+              <Form.Label>Product name</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Product Name"
+                defaultValue={name}
+                {...(register("productName"),
+                { required: true, minLength: 2, maxLength: 60 })}
+                name="productName"
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="categoryId">
+              <Form.Label>Category</Form.Label>
+              <Form.Select
+                className="mb-3"
+                aria-label="Category Select"
+                {...(register("categoryId"), { required: true })}
+              >
+                {categoriesSearchSelect.map(
+                  (category: CategorySearchSelectType) => {
+                    return (
+                      <option
+                        key={category.id}
+                        selected={
+                          category.label === categoryName ? true : undefined
+                        }
+                        value={category.id}
+                      >
+                        {category.label}
+                      </option>
+                    );
+                  }
+                )}
+              </Form.Select>
+            </Form.Group>
 
-      <Form onSubmit={handleSubmit(onFormSubmit)}>
-        <Form.Group className="mb-3" controlId="productName">
-          <Form.Label>Product name</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Product Name"
-            defaultValue={name}
-            {...register("productName")}
-            name="productName"
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="categoryId">
-          <Form.Label>Category</Form.Label>
-          <Form.Select
-            className="mb-3"
-            aria-label="Category Select"
-            {...register("categoryId")}
-          >
-            {categoriesSearchSelect.map(
-              (category: CategorySearchSelectType) => {
-                return (
-                  <option
-                    key={category.id}
-                    selected={
-                      category.label === categoryName ? true : undefined
-                    }
-                    value={category.id}
-                  >
-                    {category.label}
-                  </option>
-                );
-              }
-            )}
-          </Form.Select>
-        </Form.Group>
-
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-      </Form>
+            <Button variant="primary" type="submit">
+              Submit
+            </Button>
+          </Form>
+        </Col>
+      </Row>
     </Container>
   );
 };

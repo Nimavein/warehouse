@@ -32,21 +32,25 @@ const NewCategory: React.FC = () => {
   };
 
   return (
-    <Form className="mt-5" onSubmit={handleSubmit(onFormSubmit)}>
-      <Form.Group className="mb-3" controlId="categoryName">
-        <Form.Label>Category Name</Form.Label>
-        <Form.Control
-          type="text"
-          placeholder="Category Name"
-          {...register("name")}
-          name="name"
-        />
-      </Form.Group>
+    <>
+      <Form className="mt-4" onSubmit={handleSubmit(onFormSubmit)}>
+        <h3 className="mb-3">Create New Category</h3>
+        <Form.Group className="mb-3" controlId="categoryName">
+          <Form.Label>Category Name</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Category Name"
+            {...register("name")}
+            name="name"
+            required
+          />
+        </Form.Group>
 
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
-    </Form>
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
+      </Form>
+    </>
   );
 };
 

@@ -62,12 +62,14 @@ const NewProduct: React.FC = () => {
 
   return (
     <Form className="mt-5" onSubmit={handleSubmit(onFormSubmit)}>
+      <h3 className="mb-3">Create New Product</h3>
       <Form.Group className="mb-3" controlId="newProductName">
         <Form.Label>Product Name</Form.Label>
         <Form.Control
           type="text"
           placeholder="Product Name"
           {...register("newProductName")}
+          required
           name="newProductName"
         />
       </Form.Group>
@@ -76,9 +78,10 @@ const NewProduct: React.FC = () => {
         className="mb-3"
         aria-label="Category Select"
         {...register("newProductCategory")}
+        required
         name="newProductCategory"
       >
-        <option>Select category</option>
+        <option value="">Select category</option>
         {categoriesSearchSelect.map((category: CategorySearchSelectType) => {
           return (
             <option key={category.id} value={category.id}>
@@ -92,9 +95,10 @@ const NewProduct: React.FC = () => {
         className="mb-3"
         aria-label="Category Select"
         {...register("newProductTax")}
+        required
         name="newProductTax"
       >
-        <option>Select tax</option>
+        <option value="">Select tax</option>
         {taxes.map((tax: TaxType) => {
           return (
             <option key={tax.id} value={tax.id}>
@@ -108,9 +112,10 @@ const NewProduct: React.FC = () => {
         className="mb-3"
         aria-label="Measure Type Select"
         {...register("newProductMeasureType")}
+        required
         name="newProductMeasureType"
       >
-        <option>Select measure type</option>
+        <option value="">Select measure type</option>
         {measureTypes.map((measureType: MeasureTypeType) => {
           return (
             <option key={measureType.id} value={measureType.id}>

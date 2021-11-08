@@ -1,6 +1,6 @@
 import React from "react";
 import { ProductProps } from "../types";
-import { Card, Button } from "react-bootstrap";
+import { Card, Button, Stack } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { config } from "../apiRequests";
@@ -17,19 +17,23 @@ const Product: React.FC<ProductProps> = (props) => {
       <Card.Body>
         <Card.Title>{props.name}</Card.Title>
         <Card.Text>{props.categoryName}</Card.Text>
-        <Link
-          to={{
-            pathname: `/${props.id}`,
-            state: {
-              ...props,
-            },
-          }}
-        >
-          <Button variant="primary">Edit</Button>
-        </Link>
-        <Button onClick={deleteProduct} className="ml-3" variant="danger">
-          Delete
-        </Button>
+        <Stack gap={1}>
+          <Link
+            to={{
+              pathname: `/${props.id}`,
+              state: {
+                ...props,
+              },
+            }}
+          >
+            <Button style={{ width: "100%" }} variant="primary">
+              Edit
+            </Button>
+          </Link>
+          <Button onClick={deleteProduct} variant="danger">
+            Delete
+          </Button>
+        </Stack>
       </Card.Body>
     </Card>
   );

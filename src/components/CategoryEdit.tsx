@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 import React from "react";
 import { CategoryProps, EditedCategoryType, LocationType } from "../types";
-import { Form, Button, Container } from "react-bootstrap";
+import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import { CategoryType } from "../types";
 import { useMutation } from "react-query";
 import { useForm } from "react-hook-form";
@@ -35,24 +35,29 @@ const CategoryEdit: React.FC<CategoryProps> = (props) => {
 
   return (
     <Container>
-      {name}
+      <h3 className="mb-3 mt-4">Edit {name} category</h3>
 
-      <Form onSubmit={handleSubmit(onFormSubmit)}>
-        <Form.Group className="mb-3" controlId="categoryName">
-          <Form.Label>Product name</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Product Name"
-            defaultValue={name}
-            {...register("categoryName")}
-            name="categoryName"
-          />
-        </Form.Group>
+      <Row>
+        <Col lg={6}>
+          <Form onSubmit={handleSubmit(onFormSubmit)}>
+            <Form.Group className="mb-3" controlId="categoryName">
+              <Form.Label>Category name</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Product Name"
+                defaultValue={name}
+                {...register("categoryName")}
+                required
+                name="categoryName"
+              />
+            </Form.Group>
 
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-      </Form>
+            <Button variant="primary" type="submit">
+              Submit
+            </Button>
+          </Form>
+        </Col>
+      </Row>
     </Container>
   );
 };

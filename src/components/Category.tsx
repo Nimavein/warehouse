@@ -8,7 +8,6 @@ const Category: React.FC<CategoryProps> = (props) => {
     <Card className="mb-3">
       <Card.Body>
         <Card.Title>{props.name}</Card.Title>
-        <Card.Text>{props.id}</Card.Text>
         <Link
           to={{
             pathname: `/categories/${props.id}`,

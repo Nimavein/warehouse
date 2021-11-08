@@ -1,19 +1,18 @@
 import { useLocation } from "react-router-dom";
 import React from "react";
-import { CategorySearchSelectType, LocationType } from "../types";
+import { CategoryProps, EditedCategoryType, LocationType } from "../types";
 import { Form, Button, Container } from "react-bootstrap";
-import { useCategoriesData } from "../contextProviders/categoriesContext";
-import { CategoryType, EditProductFormType } from "../types";
+import { CategoryType } from "../types";
 import { useMutation } from "react-query";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { config } from "../apiRequests";
 import { useHistory } from "react-router-dom";
 
-const CategoryEdit: React.FC = (props: any) => {
+const CategoryEdit: React.FC<CategoryProps> = (props) => {
   const history = useHistory();
 
-  const { mutate } = useMutation(async (editedCategory: any) => {
+  const { mutate } = useMutation(async (editedCategory: EditedCategoryType) => {
     const response = await axios.put(
       `https://newdemostock.gopos.pl/ajax/219/product_categories/${id}`,
       {
@@ -24,7 +23,7 @@ const CategoryEdit: React.FC = (props: any) => {
     if (response.status === 200) reset();
   });
 
-  const onFormSubmit = (data: any) => {
+  const onFormSubmit = (data: EditedCategoryType) => {
     mutate(data);
     history.push("/categories");
   };

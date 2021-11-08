@@ -1,9 +1,11 @@
 import { useLocation } from "react-router-dom";
 import React from "react";
-import { CategorySearchSelectType, LocationType } from "../types";
+import {
+  CategorySearchSelectType,
+  EditedProductType,
+  LocationType,
+} from "../types";
 import { Form, Button, Container } from "react-bootstrap";
-import { useCategoriesData } from "../contextProviders/categoriesContext";
-import { CategoryType, EditProductFormType } from "../types";
 import { useMutation } from "react-query";
 import { useForm } from "react-hook-form";
 import axios from "axios";
@@ -11,12 +13,12 @@ import { config } from "../apiRequests";
 import { useSearchSelectData } from "../contextProviders/searchSelectContext";
 import { useHistory } from "react-router-dom";
 
-const ProductEdit: React.FC = (props: any) => {
+const ProductEdit: React.FC<EditedProductType> = (props: any) => {
   const categoriesSearchSelect: Promise<CategorySearchSelectType[]> | any =
     useSearchSelectData();
   const history = useHistory();
 
-  const { mutate } = useMutation(async (editedProduct: any) => {
+  const { mutate } = useMutation(async (editedProduct: EditedProductType) => {
     const response = await axios.put(
       `https://newdemostock.gopos.pl/ajax/219/products/${id}`,
       {
@@ -31,7 +33,7 @@ const ProductEdit: React.FC = (props: any) => {
     if (response.status === 200) reset();
   });
 
-  const onFormSubmit = (data: any) => {
+  const onFormSubmit = (data: EditedProductType) => {
     mutate(data);
     history.push("/");
   };

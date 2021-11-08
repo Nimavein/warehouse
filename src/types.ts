@@ -58,11 +58,6 @@ export type LocationType = {
   state: any;
 };
 
-export type EditProductFormType = {
-  newProductName: string;
-  newProductCategory: string;
-};
-
 export type CategorySearchSelectType = {
   id: number;
   label: string;
@@ -78,7 +73,27 @@ export type TaxType = {
   status: string;
 };
 
-export type measureTypeType = {
+export type MeasureTypeType = {
   id: number;
   name: string;
+};
+
+export type NewProductType = {
+  newProductName: string;
+  newProductCategory: number;
+  newProductMeasureType: number;
+  newProductTax: number;
+  type: string;
+};
+
+export type EditedCategoryType = {
+  categoryName: string;
+};
+
+export type EditedProductType = {
+  productName: string;
+  categoryId: number;
+  type: string;
+  tax_id: number;
+  measure_type: number;
 };

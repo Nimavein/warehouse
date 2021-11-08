@@ -1,4 +1,4 @@
-import IRoute from "./components/interfaces";
+import IRoute from "./interfaces";
 import CategoriesList from "./components/CategoriesList";
 import ProductsList from "./components/ProductsList";
 import CreationSubpage from "./components/CreationSubpage";

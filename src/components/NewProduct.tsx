@@ -6,7 +6,12 @@ import { useHistory } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
 import axios from "axios";
 import { useSearchSelectData } from "../contextProviders/searchSelectContext";
-import { CategorySearchSelectType, measureTypeType, TaxType } from "../types";
+import {
+  CategorySearchSelectType,
+  MeasureTypeType,
+  NewProductType,
+  TaxType,
+} from "../types";
 
 const NewProduct: React.FC = () => {
   const [taxes, setTaxes] = useState([]);
@@ -28,7 +33,7 @@ const NewProduct: React.FC = () => {
     getData();
   }, []);
 
-  const { mutate } = useMutation(async (newProduct: any) => {
+  const { mutate } = useMutation(async (newProduct: NewProductType) => {
     const response = await axios.post(
       "https://newdemostock.gopos.pl/ajax/219/products",
       {
@@ -43,14 +48,14 @@ const NewProduct: React.FC = () => {
     if (response.status === 200) reset();
   });
 
-  const measureTypes = [
+  const measureTypes: MeasureTypeType[] = [
     { name: "szt", id: 1 },
     { name: "kg", id: 2 },
     { name: "l", id: 3 },
     { name: "opakowanie", id: 4 },
   ];
 
-  const onFormSubmit = (data: any) => {
+  const onFormSubmit = (data: NewProductType) => {
     mutate(data);
     history.push("/");
   };
@@ -106,7 +111,7 @@ const NewProduct: React.FC = () => {
         name="newProductMeasureType"
       >
         <option>Select measure type</option>
-        {measureTypes.map((measureType: measureTypeType) => {
+        {measureTypes.map((measureType: MeasureTypeType) => {
           return (
             <option key={measureType.id} value={measureType.id}>
               {measureType.name}
